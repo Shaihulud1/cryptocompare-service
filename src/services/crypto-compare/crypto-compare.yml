@@ -1,0 +1,27 @@
+currencies: 
+  - USD
+  - EUR
+  - GBP
+  - JPY
+  - RUR
+cryptos:
+  - BTC
+  - XRP
+  - ETH
+  - BCH
+  - EOS
+  - LTC
+  - XMR
+  - DASH
+fields: 
+  - CHANGE24HOUR
+  - CHANGEPCT24HOUR
+  - OPEN24HOUR
+  - VOLUME24HOUR
+  - VOLUME24HOURTO
+  - LOW24HOUR
+  - HIGH24HOUR
+  - PRICE
+  - SUPPLY
+  - MKTCAP
+  - IMAGEURL

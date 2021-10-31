@@ -1,0 +1,32 @@
+version: "3.7"
+services: 
+    node: 
+        build:
+            context: .
+            dockerfile: ./dockerfile-node
+        ports:
+            - "${APP_PORT}:${APP_PORT}"
+        volumes: 
+            - ./:/usr/src/app/
+        depends_on: 
+            - mysql
+        networks: 
+            - cryptcurr
+    mysql: 
+        image: mysql
+        command: --default-authentication-plugin=mysql_native_password
+        restart: always
+        cap_add:
+            - SYS_NICE
+        environment:
+            MYSQL_DATABASE: db
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_USER: mysqluser
+            MYSQL_PASSWORD: mysqluspass
+        volumes:
+            - ./db:/var/lib/mysql
+        networks: 
+            - cryptcurr
+networks: 
+    cryptcurr:
+
