@@ -1,17 +1,5 @@
 version: "3.7"
 services: 
-    node: 
-        build:
-            context: .
-            dockerfile: ./dockerfile-node
-        ports:
-            - "${APP_PORT}:${APP_PORT}"
-        volumes: 
-            - ./:/usr/src/app/
-        depends_on: 
-            - mysql
-        networks: 
-            - cryptcurr
     mysql: 
         image: mysql
         command: --default-authentication-plugin=mysql_native_password
@@ -25,6 +13,19 @@ services:
             MYSQL_PASSWORD: mysqluspass
         volumes:
             - ./db:/var/lib/mysql
+        networks: 
+            - cryptcurr
+    node: 
+        build:
+            context: .
+            dockerfile: ./dockerfile-node
+        restart: on-failure
+        ports:
+            - "${APP_PORT}:${APP_PORT}"
+        volumes: 
+            - ./:/usr/src/app/
+        depends_on: 
+            - mysql
         networks: 
             - cryptcurr
 networks: 
